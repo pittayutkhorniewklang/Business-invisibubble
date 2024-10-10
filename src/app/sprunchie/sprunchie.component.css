@@ -1,93 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500;600;700&family=Poppins:wght@100;300;400;500;600;700&display=swap');
 
 .container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* จัดตำแหน่งด้านบน */
     justify-content: center;
-    height: 90vh;
-    font-family: 'poppins', 'Kanit';
+    flex-wrap: wrap; /* รองรับการจัดเรียงหลายแถว */
+    padding: 20px;
+    font-family: 'Poppins', 'Kanit', sans-serif;
 }
 
-.box {
-    background: #fdfdfd;
-    display: flex;
-    flex-direction: column;
-    padding: 25px 25px;
-    border-radius: 20px;
-    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+.card-product {
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* ป้องกันภาพล้น */
 }
 
-.form-box {
-    width: 450px;
-    margin: 0px 10px;
-    font-family: 'poppins', 'Kanit';
+.card-product:hover {
+    transform: scale(1.05); /* ขยายเมื่อวางเมาส์ */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.form-box header {
-    font-size: 25px;
-    font-weight: 600;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e6e6e6;
-    margin-bottom: 10px;
-    font-family: 'poppins', 'Kanit';
+.product-image {
+    max-width: 100%; /* จำกัดความกว้างของภาพ */
+    height: auto; /* ทำให้ความสูงปรับอัตโนมัติ */
+    border-radius: 10px; /* เพิ่มมุมมนให้กับภาพ */
 }
 
-.form-box form .field {
-    display: flex;
-    margin-bottom: 10px;
-    flex-direction: column;
-    font-family: 'poppins', 'Kanit';
+.font-card {
+    font-family: 'Poppins', 'Kanit', sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 16px; /* ขนาดฟอนต์ที่ใหญ่ขึ้น */
+    margin-top: 10px; /* เพิ่มระยะห่างด้านบน */
 }
 
-.form-box form .input input {
-    height: 40px;
-    width: 100%;
-    font-size: 16px;
-    padding: 0 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    outline: none;
+.price {
+    font-size: 14px; /* ขนาดฟอนต์ของราคา */
+    color: #e963ad; /* เปลี่ยนสีราคา */
 }
 
 .btn {
-    height: 35px;
+    height: 40px; /* ความสูงของปุ่ม */
     background: rgba(243, 22, 206, 0.808);
-    border: 0;
+    border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 15px;
+    font-size: 16px; /* ขนาดฟอนต์ของปุ่ม */
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
     margin-top: 10px;
-    padding: 0px 10px;
-    font-family: 'poppins', 'Kanit';
+    padding: 0 20px; /* เพิ่มระยะห่างซ้ายและขวา */
 }
 
-.logindetail {
-    margin-left: 260px;
-    color: #706b6b;
-    font-family: 'Poppins', 'Kanit';
-    font-size: 14px;
-}
-
-.logindetail2 {
-    
-    color: #e963ad;
-    font-family: 'Poppins', 'Kanit';
-    font-size: 14px;
-    text-decoration: none;
-}
-.font-card {
-    font-family: 'Poppins', 'Kanit';
-    color: black;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: left;
-}
-.card-product {
-    border: none;
-    box-shadow: none; 
+.btn:hover {
+    background: rgba(243, 22, 206, 1); /* เปลี่ยนสีเมื่อวางเมาส์ */
 }

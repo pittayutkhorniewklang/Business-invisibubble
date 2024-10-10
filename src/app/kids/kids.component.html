@@ -1,17 +1,17 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts"> <!-- ใช้ filteredProducts ไม่ใช่ products -->
-      <div class="card-product">
-        <div class="card-body text-center">
-          <img [src]="'http://localhost/shop_backend/' + product.image" alt="{{ product.name }}" class="product-image img-fluid">
-          <a [routerLink]="['/product', product.id]" class="product-link">
-            <h5 class="font-card">{{ product.name }}</h5>
-           
-          </a>
-          <p class="font-card">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
-          <a [routerLink]="['/product', product.id]" class="btn btn-primary">เพิ่มในตะกร้า</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
+            <div class="card-product">
+                <div class="card-body text-center">
+                    <img [src]="product.image" alt="{{ product.name }}" class="product-image img-fluid">
+                    <a [routerLink]="['/product', product._id]">
+                        <h5 class="font-card">{{ product.name }}</h5>
+                    </a>
+                    <p class="font-card price">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
+                    <button class="btn btn-primary" (click)="addToCart(product)">เพิ่มในตะกร้า</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
+</div>
