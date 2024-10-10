@@ -1,0 +1,60 @@
+
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Manage Orders</h3>
+    
+    <table class="table table-bordered table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Order Items</th>
+          <th>Total Item Price</th> <!-- คอลัมน์สำหรับแสดงราคาสินค้า -->
+          <th>Delivery Price</th>
+  
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" class="align-middle">
+          <td>{{ order.id }}</td>
+          <td>{{ order.customer_name }}</td>
+  
+          <!-- แสดงรายการสินค้าและจำนวน -->
+          <td>
+            <ul>
+              <li *ngFor="let item of order.order_items">
+                {{ item.name }} - {{ item.quantity }} pcs
+              </li>
+            </ul>
+          </td>
+  
+          <!-- แสดงราคาสินค้าทั้งหมดในคำสั่งซื้อ -->
+          <td>
+            <ul>
+              <li *ngFor="let item of order.order_items">
+                {{ item.price * item.quantity | currency:'THB':'symbol':'1.0-0' }} <!-- คำนวณราคารวมต่อชิ้น -->
+              </li>
+            </ul>
+          </td>
+  
+          <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
+  
+  
+  
+  
+  
+          <td>
+            <div class="d-flex justify-content-around">
+  
+            <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
+                <i class="fas fa-times"></i> Reject
+            </button>
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

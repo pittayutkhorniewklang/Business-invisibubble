@@ -1,0 +1,84 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="row">
+      <!-- Section แสดงสินค้าในตะกร้า -->
+      <div class="col-md-8">
+        <h3>ตะกร้าสินค้า</h3>
+  
+        <!-- ตรวจสอบว่าสินค้ามีอยู่หรือไม่ -->
+        <div *ngIf="items.length > 0; else emptyCart">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>สินค้า</th>
+                <th>ราคา</th>
+                <th>จำนวน</th>
+                <th>ราคารวม</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- วนลูปแสดงสินค้าที่อยู่ในตะกร้า -->
+              <tr *ngFor="let item of items">
+                <td class="text-left">
+                  <img [src]="item.image" class="img-thumbnail" alt="{{ item.name }}" style="width: 80px; height: auto; margin-right: 10px;">
+                  <span>{{ item.name }}</span>
+                </td>
+                <td>฿{{ item.price | number: '1.0-0' }}</td>
+                <td>
+                  <button class="btn btn-light btn-quantity" (click)="decrementQuantity(item)">-</button>
+                  <span class="mx-2">{{ item.quantity }}</span>
+                  <button class="btn btn-light btn-quantity" (click)="incrementQuantity(item)">+</button>
+                </td>
+                <td>฿{{ item.price * item.quantity | number: '1.0-0' }}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <!-- ปุ่มสำหรับอัปเดตสินค้าในตะกร้า -->
+          <div class="d-flex justify-content-between mt-4">
+            <a routerLink="/allproduct" class="btn btn-light">
+              <i class="fa fa-arrow-left"></i> ซื้อสินค้าต่อ
+            </a>
+            <button class="btn btn-danger" (click)="clearCart()">ล้างตะกร้าสินค้า</button> <!-- ปุ่มล้างตะกร้า -->
+          </div>
+        </div>
+  
+        <!-- ถ้าไม่มีสินค้าในตะกร้า จะแสดงข้อความนี้ -->
+        <ng-template #emptyCart>
+          <div class="text-center mt-5">
+            <h4>ยังไม่มีสินค้าในตะกร้า</h4>
+            <a routerLink="/allproduct" class="btn btn-primary mt-3">เลือกซื้อสินค้า</a>
+          </div>
+        </ng-template>
+      </div>
+  
+      <!-- Section แสดงรายละเอียดการสั่งซื้อ -->
+      <div class="col-md-4 order-summary">
+        <h4>สรุปการสั่งซื้อ</h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between">
+            <span>มูลค่าสินค้า</span>
+            <strong>฿{{ total | number: '1.0-0' }}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>การจัดส่ง</span>
+            <strong>฿70.00</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>รวมทั้งหมด</span>
+            <strong>฿{{ total + 70 | number: '1.0-0' }}</strong>
+          </li>
+        </ul>
+  
+        <button class="btn btn-success w-100 mt-3" (click)="placeOrder()">
+          ดำเนินการสั่งซื้อและชำระเงิน
+        </button>
+  
+        <!-- ใส่รูปภาพบัตรชำระเงิน -->
+        <div class="mt-4 text-center">
+          <img src="###" alt="payment-methods" class="img-fluid"> 
+        </div>
+      </div>
+    </div>
+  </div>
+  

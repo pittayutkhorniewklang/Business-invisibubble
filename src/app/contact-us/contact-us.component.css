@@ -1,0 +1,35 @@
+/* Remove borders from input fields */
+.no-border {
+    border: none;
+    border-bottom: 2px solid #ccc; /* Optional: adds an underline */
+    border-radius: 0;
+    padding-left: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+/* Change the color of the border when the field is focused */
+.no-border:focus {
+    border-bottom: 2px solid #ff33cc; /* Pink underline when focused */
+    outline: none;
+}
+
+/* Optional: Add padding to form fields to space them out */
+.form-group {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: larger;
+    font-family: 'poppins', 'Kanit';
+}
+
+/* Pink button */
+.btn-pink {
+    background-color: #ff33cc;
+    color: white;
+}
+
+/* Rounded section */
+.rounded-section {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+}

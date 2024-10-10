@@ -1,0 +1,22 @@
+.dashboard {
+  margin-left: 15rem; /* ปรับตำแหน่งให้ชิดกับ Sidebar */
+  padding: 30px; /* ปรับ padding ให้เหมาะสม */
+  width: calc(100% - 15rem); /* ปรับความกว้างของ Dashboard */
+}
+
+/* Info container styles */
+.info-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ทำให้ responsive */
+  gap: 20px; /* ลดระยะห่างระหว่างกล่อง */
+}
+
+/* Info box styles */
+.info-box {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+}

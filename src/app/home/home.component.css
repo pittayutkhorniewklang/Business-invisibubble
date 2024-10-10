@@ -1,0 +1,79 @@
+html, body {
+    height: 100%; /* กำหนดความสูงให้เต็มหน้าจอ */
+    margin: 0; /* ลบ margin ของ body */
+    overflow: hidden; /* ปิดการเลื่อน */
+}
+
+.shop-container {
+    position: fixed; /* กำหนดให้ตำแหน่งคงที่ */
+    top: 50%; /* ย้ายขึ้นไปที่ครึ่งหนึ่ง */
+    left: 50%; /* ย้ายไปทางซ้ายสุด */
+    transform: translate(-50%, -50%); /* ย้ายกลางพอดี */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* ให้เต็มหน้าจอ */
+    padding: 20px; /* เพิ่ม padding */
+    background-color: #f9f9f9; /* สีพื้นหลัง */
+}
+
+.shop-details {
+    max-width: 50%;
+    padding-right: 20px; /* เพิ่มพื้นที่ระหว่างข้อความและรูปภาพ */
+}
+
+.shop-details h1 {
+    font-size: 6rem; /* ขนาดฟอนต์ */
+    color: #b05757;
+    font-weight: bold; /* ตัวหนา */
+}
+
+.shop-details h2 {
+    font-size: 2.5rem; /* ขนาดฟอนต์ */
+    color: #333333; /* สีข้อความ */
+}
+
+.shop-details p {
+    font-size: 1.2rem;
+    color: #555; /* สีข้อความ */
+    line-height: 1.6; /* ระยะห่างระหว่างบรรทัด */
+}
+
+.shop-image {
+    max-width: 40%;
+}
+
+.shop-image img {
+    width: 100%; /* ปรับให้เต็มพื้นที่ */
+    height: auto; /* ปรับให้ความสูงตามอัตราส่วน */
+    border-radius: 15px; /* มุมมน */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* เงา */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .shop-container {
+        flex-direction: column; /* เปลี่ยนแนวตั้ง */
+        align-items: center;
+        padding: 20px; /* ลด padding ในมือถือ */
+    }
+    
+    .shop-details {
+        max-width: 100%; /* เต็มความกว้าง */
+        text-align: center; /* จัดกึ่งกลาง */
+        padding-right: 0; /* ลบพื้นที่ */
+    }
+    
+    .shop-image {
+        max-width: 100%; /* เต็มความกว้าง */
+        margin-top: 20px; /* เพิ่มพื้นที่ด้านบน */
+    }
+    
+    .shop-details h1 {
+        font-size: 5rem; /* ขนาดเล็กลงในมือถือ */
+    }
+    
+    .shop-details h2 {
+        font-size: 2rem; /* ขนาดเล็กลงในมือถือ */
+    }
+}

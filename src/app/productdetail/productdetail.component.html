@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="product-detail-container" *ngIf="product">
+    <div class="product-image" *ngIf="product?.image">
+      <img [src]="product.image" alt="{{ product?.name }}" class="product-image img-fluid">
+    </div>
+  
+    <div class="product-info">
+      <h1>{{ product?.name }}</h1>
+      <p class="price">฿{{ product?.price | number:'1.0-0' }}</p>
+  
+      <div class="quantity-control">
+        <button (click)="decreaseQuantity()">-</button>
+        <input type="number" [(ngModel)]="quantity" min="1" value="1">
+        <button (click)="increaseQuantity()">+</button>
+      </div>
+  
+      <button class="btn-add-to-cart" (click)="addToCart()">เพิ่มในตะกร้า</button>
+  
+      <div class="product-description">
+        <h3>รายละเอียดสินค้า</h3>
+        <p>{{ product?.description }}</p>
+      </div>
+    </div>
+  </div>
+  

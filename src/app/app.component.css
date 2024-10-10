@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+/* ฟอนต์ */
+.font {
+  font-family: 'Poppins', 'Kanit', sans-serif;
+}
+
+/* ปรับแต่ง Navbar */
+.custom-navbar {
+  background-color: #EAC4C4 !important;
+}
+
+/* ปุ่มสี */
+.btn-color {
+  background-color: #A04747;
+  color: white;
+}
+
+/* ค้นหา */
+.custom-search {
+  margin-left: 20px;
+  width: 100%; /* ให้ responsive โดยปรับเป็น 100% */
+  max-width: 500px; /* ตั้งค่า max-width */
+}
+
+/* ปุ่ม Outline */
+.btn-outline {
+  font-weight: 100;
+  border-color: #000000;
+  color: aliceblue;
+  margin-left: 10px;
+}
+
+/* ระยะห่าง Login */
+.login-space {
+  margin-left: 100px;
+}
+
+/* Navbar Deco */
+.navbardeco {
+  font-weight: 50;
+}
+
+/* ตกแต่ง Cart */
+.cart-deco {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+/* สไตล์ Navbar Text */
+.navbar-text {
+  color: white !important;
+  font-weight: bold !important;
+  font-family: 'Poppins', 'Kanit', sans-serif !important;
+}
+
+/* Flexbox */
+.d-flex {
+  display: flex;
+}
+
+/* ตกแต่ง Dropdown Menu */
+.dropdown-menu {
+  background-color: rgb(209, 230, 223);
+  border-color: rgb(209, 230, 223);
+  padding: 5px 10px;
+  border-radius: 5px; /* เพิ่มมุมโค้งมน */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+
+/* สไตล์ Nav Item */
+.nav-item .nav-link {
+  color: white !important;
+  font-weight: bold !important;
+  font-family: 'Poppins', 'Kanit', sans-serif !important;
+  font-size: 16px !important;
+}
+
+/* ตกแต่ง Dropdown Item */
+.dropdown-item {
+    color: black !important;
+    font-weight: bold !important;
+    font-family: 'Poppins', 'Kanit', sans-serif;
+    font-size: 14px;
+    padding: 12px 15px; /* เพิ่ม padding ด้านบนและล่างเพื่อเพิ่มระยะห่าง */
+    text-decoration: none !important;
+}
+
+.dropdown-item:hover {
+  background-color: #A04747; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+  color: white !important; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+  text-decoration: none;
+}
+

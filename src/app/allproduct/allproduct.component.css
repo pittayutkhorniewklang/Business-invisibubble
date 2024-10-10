@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500;600;700&family=Poppins:wght@100;300;400;500;600;700&display=swap');
+
+.container {
+    display: flex;
+    align-items: flex-start; /* จัดตำแหน่งด้านบน */
+    justify-content: center;
+    flex-wrap: wrap; /* รองรับการจัดเรียงหลายแถว */
+    padding: 20px;
+    font-family: 'Poppins', 'Kanit', sans-serif;
+}
+
+.card-product {
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* ป้องกันภาพล้น */
+}
+
+.card-product:hover {
+    transform: scale(1.05); /* ขยายเมื่อวางเมาส์ */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    max-width: 100%; /* จำกัดความกว้างของภาพ */
+    height: auto; /* ทำให้ความสูงปรับอัตโนมัติ */
+    border-radius: 10px; /* เพิ่มมุมมนให้กับภาพ */
+}
+
+.font-card {
+    font-family: 'Poppins', 'Kanit', sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 16px; /* ขนาดฟอนต์ที่ใหญ่ขึ้น */
+    margin-top: 10px; /* เพิ่มระยะห่างด้านบน */
+}
+
+.price {
+    font-size: 14px; /* ขนาดฟอนต์ของราคา */
+    color: #e963ad; /* เปลี่ยนสีราคา */
+}
+
+.btn {
+    height: 40px; /* ความสูงของปุ่ม */
+    background: rgba(243, 22, 206, 0.808);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px; /* ขนาดฟอนต์ของปุ่ม */
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    padding: 0 20px; /* เพิ่มระยะห่างซ้ายและขวา */
+}
+
+.btn:hover {
+    background: rgba(243, 22, 206, 1); /* เปลี่ยนสีเมื่อวางเมาส์ */
+}

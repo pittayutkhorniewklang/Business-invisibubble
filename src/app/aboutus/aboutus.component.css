@@ -1,0 +1,71 @@
+/* เพิ่มระยะห่างระหว่างแต่ละคอลัมน์ */
+.feature-box {
+  display: flex;
+  align-items: center;
+  background-color: #f4e1ff; /* Light purple background */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left; /* จัดข้อความให้ชิดซ้าย */
+  margin: 10px; /* เพิ่มระยะห่างระหว่างแต่ละกล่อง */
+}
+
+/* Styling for the icons */
+.feature-icon {
+  width: 70px;  /* ขนาดของไอคอน */
+  margin-right: 15px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+.feature-iconv2 {
+  width: 50px;  /* ขนาดของไอคอน */
+  margin-right: 15px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+/* Heading styles for each feature */
+.feature-box h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff6699;  /* Similar to pinkish color */
+  margin-bottom: 10px;
+  text-transform: uppercase;  /* All caps */
+  letter-spacing: 1px;  /* Adds spacing between letters */
+}
+
+/* Paragraph styles */
+.feature-box p {
+  font-family: 'Kanit', sans-serif;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  max-width: 350px;  /* ปรับขนาดตามต้องการ */
+  margin: 0; 
+}
+
+/* Styles for the quick link section */
+.quick-link {
+  padding: 0px;
+}
+
+.quick-link h6 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.quick-link ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-link li {
+  margin: 5px 0;
+}
+
+.quick-link a {
+  text-decoration: none;
+  color: #000;
+}
+
+.quick-link a:hover {
+  text-decoration: underline;
+}

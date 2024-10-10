@@ -1,0 +1,42 @@
+/* Wrapper styles */
+#wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* ความสูงเต็มหน้าจอ */
+  }
+  
+  /* Sidebar styles */
+  #sidebar-wrapper {
+    width: 15rem;
+    height: 100vh; /* Sidebar ครอบคลุมความสูงเต็มหน้าจอ */
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: #EAC4C4 !important;
+    border-right: 1px solid #EAC4C4!important;
+    margin-top: 60px; /* เว้นระยะจากด้านบนเพื่อไม่ให้ทับกับ Navbar */
+    display: flex;
+    flex-direction: column; /* จัดเรียงภายใน Sidebar ในแนวตั้ง */
+  }
+  
+  /* List item styles */
+  .list-group-item {
+    border: none; /* ลบเส้นขีด */
+    padding: 15px 20px; /* สามารถปรับ padding ได้ตามต้องการ */
+    background-color: #EAC4C4!important; /* สีพื้นหลัง */
+    line-height: 2.5;
+    font-size: 18px!important;
+    color: #ffffff!important;
+    font-family: 'Poppins', 'Kanit', sans-serif !important;
+    font-weight: bold;
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+    transition: background-color 0.3s ease; /* เพิ่ม effect การเปลี่ยนสีเมื่อ hover */
+  }
+  
+  /* Hover effect for list item */
+  .list-group-item:hover {
+    background-color: #9e5959!important; /* สีพื้นหลังเมื่อ hover */
+    color: #ffffff!important; /* สีตัวอักษรเมื่อ hover */
+  }
+  

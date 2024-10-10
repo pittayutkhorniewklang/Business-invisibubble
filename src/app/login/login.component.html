@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="box form-box">
+        <header>
+            <div class="header-content">
+                <span>เข้าสู่ระบบ</span>
+                <div class="logindetail">
+                    ไม่มีบัญชี? <a routerLink="/register" class="logindetail2">สมัครสมาชิก</a>
+                </div>
+            </div>
+        </header>
+        <form action="home.component.html" method="post">
+            <div class="field input">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" name="username" id="Username" required>
+            </div>
+
+            <div class="field input">
+                <label for="password">Password</label>
+                <input type="password" placeholder="password" name="password" id="password" required>
+            </div>
+
+            <div class="field">
+                <input type="submit" class='btn' name="submit" value="Login" required>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

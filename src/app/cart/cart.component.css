@@ -1,0 +1,48 @@
+/* ปรับแต่งการแสดงสินค้าภายในตะกร้า */
+.table {
+    border-color: #ddd;
+  }
+  
+  .table td img {
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .table td span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .btn-quantity {
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    font-size: 18px;
+    padding: 0;
+  }
+  
+  /* ปรับแต่งการสรุปการสั่งซื้อ */
+  .order-summary {
+    border-left: 2px solid #ddd;
+    padding-left: 20px;
+  }
+  
+  .order-summary h4 {
+    font-weight: 600;
+  }
+  
+  .order-summary ul {
+    border: none;
+  }
+  
+  .order-summary .list-group-item {
+    border: none;
+    padding: 15px 0;
+  }
+  
+  .order-summary .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
