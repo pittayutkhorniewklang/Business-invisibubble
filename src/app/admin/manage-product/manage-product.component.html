@@ -104,7 +104,6 @@
         <th>Brand</th>
         <th>Stock</th>
         <th>Price</th>
-        <th>Image</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -115,9 +114,6 @@
         <td>{{ product.brand }}</td>
         <td>{{ product.stock }}</td>
         <td>{{ product.price }}</td>
-        <td>
-          <img [src]="product.image" alt="{{ product.name }}" style="width: 50px; height: 50px;"/>
-        </td>
         <td>
           <button class="btn btn-warning btn-sm" (click)="editProduct(product)">Edit</button>
           <button class="btn btn-danger btn-sm" (click)="deleteProduct(product._id)">Delete</button>

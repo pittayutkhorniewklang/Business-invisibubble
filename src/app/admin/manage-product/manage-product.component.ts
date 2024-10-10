@@ -47,23 +47,21 @@ export class ManageProductComponent implements OnInit {
       return;
     }
 
-    // สร้าง FormData สำหรับส่งข้อมูลไปยัง API
-    const formData = new FormData();
-    formData.append('name', this.product.name);
-    formData.append('category', this.product.category);
-    formData.append('brand', this.product.brand);
-    formData.append('stock', this.product.stock.toString());
-    formData.append('price', this.product.price.toString());
-    formData.append('description', this.product.description);
+    // ใช้ JSON ธรรมดาแทนการใช้ FormData
+    const productData = {
+      name: this.product.name,
+      category: this.product.category,
+      brand: this.product.brand,
+      stock: this.product.stock,
+      price: this.product.price,
+      description: this.product.description,
+      image: this.product.image 
+    };
 
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile); // เพิ่มไฟล์ภาพลงใน FormData
-    }
-
-    console.log('Product data being sent:', formData);  // ตรวจสอบข้อมูลที่ส่งออก
+    console.log('Product data being sent:', productData);  // ตรวจสอบข้อมูลที่ส่งออก
 
     if (this.isEditing) {
-      this.productService.editProduct(this.product._id, formData).subscribe(() => {
+      this.productService.editProduct(this.product._id, productData).subscribe(() => {
         console.log('Product edited successfully!');
         this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากแก้ไขสำเร็จ
         this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
@@ -71,7 +69,7 @@ export class ManageProductComponent implements OnInit {
         console.error('Error editing product:', error);
       });
     } else {
-      this.productService.addProduct(formData).subscribe(() => {
+      this.productService.addProduct(productData).subscribe(() => {
         console.log('Product added successfully!');
         this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากเพิ่มสำเร็จ
         this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
@@ -92,16 +90,17 @@ export class ManageProductComponent implements OnInit {
     }
   }
 
-  // ฟังก์ชันสำหรับรีเซ็ตข้อมูลฟอร์ม
-  resetForm() {
-    this.product = {};
-    this.selectedFile = null;  // รีเซ็ตไฟล์ที่เลือก
-    this.isEditing = false;  // ตั้งค่าให้กลับไปเป็นโหมดเพิ่มสินค้า
+  // ฟังก์ชันสำหรับแก้ไขสินค้า
+  editProduct(product: any) {
+    this.product = { ...product };  // คัดลอกข้อมูลสินค้าที่ต้องการแก้ไข
+    this.selectedFile = null;  // เคลียร์ไฟล์ที่เลือกเพื่อให้ผู้ใช้เลือกไฟล์ใหม่ถ้าต้องการ
+    this.isEditing = true;  // ตั้งสถานะว่าอยู่ในโหมดแก้ไข
   }
 
-  // ฟังก์ชันสำหรับการแก้ไขสินค้า
-  editProduct(product: any) {
-    this.product = { ...product };  // คัดลอกข้อมูลสินค้าที่เลือกมาในฟอร์ม
-    this.isEditing = true;  // เปลี่ยนไปเป็นโหมดแก้ไข
+  // ฟังก์ชันสำหรับรีเซ็ตฟอร์ม
+  resetForm() {
+    this.product = {};  // เคลียร์ข้อมูลฟอร์ม
+    this.selectedFile = null;  // รีเซ็ตไฟล์ที่เลือก
+    this.isEditing = false;  // รีเซ็ตโหมดแก้ไข
   }
 }
