@@ -55,7 +55,7 @@ export class ManageProductComponent implements OnInit {
       stock: this.product.stock,
       price: this.product.price,
       description: this.product.description,
-      image: this.product.image 
+      image: this.selectedFile // เก็บไฟล์ที่ถูกเลือก
     };
 
     console.log('Product data being sent:', productData);  // ตรวจสอบข้อมูลที่ส่งออก
@@ -101,6 +101,6 @@ export class ManageProductComponent implements OnInit {
   resetForm() {
     this.product = {};  // เคลียร์ข้อมูลฟอร์ม
     this.selectedFile = null;  // รีเซ็ตไฟล์ที่เลือก
-    this.isEditing = false;  // รีเซ็ตโหมดแก้ไข
+    this.isEditing = false;  // ตั้งสถานะว่าไม่อยู่ในโหมดแก้ไข
   }
 }
