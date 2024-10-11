@@ -47,6 +47,27 @@ export class ProductService {
     );
   }
 
+  // ฟังก์ชันสำหรับดึงสินค้าขายดี
+  getTopSellingProducts(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/top-selling`).pipe(
+      catchError(this.handleError) // จัดการข้อผิดพลาด
+    );
+  }
+
+  // ฟังก์ชันสำหรับการค้นหาสินค้าตามชื่อ
+  searchProductsByName(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search?name=${name}`).pipe(
+      catchError(this.handleError) // จัดการข้อผิดพลาด
+    );
+  }
+
+  // ฟังก์ชันสำหรับกรองสินค้าตามประเภท
+  filterProductsByCategory(category: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/category/${category}`).pipe(
+      catchError(this.handleError) // จัดการข้อผิดพลาด
+    );
+  }
+
   // ฟังก์ชันสำหรับจัดการข้อผิดพลาด
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
@@ -60,8 +81,4 @@ export class ProductService {
     console.error(errorMessage); // แสดงข้อผิดพลาดในคอนโซล
     return throwError(() => new Error(errorMessage)); // ส่งข้อผิดพลาดกลับไป
   }
-    // ฟังก์ชันสำหรับดึงสินค้าขายดี
-    getTopSellingProducts(): Observable<any> {
-      return this.http.get<any>(`${this.apiUrl}/top-selling`);
-    }
 }

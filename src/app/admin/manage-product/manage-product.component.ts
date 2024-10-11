@@ -44,20 +44,13 @@ export class ManageProductComponent implements OnInit {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', this.product.name);
-    formData.append('category', this.product.category);
-    formData.append('brand', this.product.brand);
-    formData.append('stock', this.product.stock.toString());
-    formData.append('price', this.product.price.toString());
-    formData.append('description', this.product.description);
-
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile, this.selectedFile.name);
-    }
-
+    // ตรวจสอบว่าเป็นการแก้ไขหรือไม่
     if (this.isEditing) {
-      this.productService.editProduct(this.product._id, formData).subscribe(() => {
+      if (!this.product._id) {
+        console.error('Product ID is missing.');
+        return;
+      }
+      this.productService.editProduct(this.product._id, this.product).subscribe(() => {
         console.log('Product edited successfully!');
         this.loadProducts();
         this.resetForm();
@@ -65,7 +58,7 @@ export class ManageProductComponent implements OnInit {
         console.error('Error editing product:', error);
       });
     } else {
-      this.productService.addProduct(formData).subscribe(() => {
+      this.productService.addProduct(this.product).subscribe(() => {
         console.log('Product added successfully!');
         this.loadProducts();
         this.resetForm();
