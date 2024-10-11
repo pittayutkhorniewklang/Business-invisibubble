@@ -1,20 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router'; // นำเข้า Router
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost/backend';  // URL ไปยัง Backend
+  private currentUserSubject = new BehaviorSubject<any>(null);
+  currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
-
-  register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/process_register.php`, data);  // ตรวจสอบเส้นทางนี้
+  constructor(private router: Router) { // Inject Router
+    if (typeof window !== 'undefined' && localStorage) {
+      const user = localStorage.getItem('currentUser');
+      if (user) {
+        this.currentUserSubject.next(JSON.parse(user));
+      }
+    }
   }
 
-  login(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/process_login.php`, data);
+  setCurrentUser(user: any) {
+    if (typeof window !== 'undefined' && localStorage) {
+      this.currentUserSubject.next(user);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+  }
+
+  logout() {
+    if (typeof window !== 'undefined' && localStorage) {
+      this.currentUserSubject.next(null);
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['/login']); // Redirect ไปที่หน้า Login หลังจาก Logout
+    }
+  }
+
+  isAdmin(): boolean {
+    const currentUser = this.currentUserSubject.value;
+    return currentUser && currentUser.role === 'admin';
   }
 }

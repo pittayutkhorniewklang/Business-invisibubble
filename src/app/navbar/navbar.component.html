@@ -1,63 +1,78 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand font" routerLink="/home"> JUBJIB SHOP</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
-        <ul class="nav navbar-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand font" routerLink="/home"> JUBJIB SHOP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link font" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font" routerLink="/newproduct">สินค้าใหม่</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle font" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            สินค้าทั้งหมด
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="navbar-text" routerLink="/allproduct">ALLPRODUCT</a></li>
+            <li><a class="navbar-text" routerLink="/sprunchie">รุ่น SPRUNCHIE</a></li>
+            <li><a class="navbar-text" routerLink="/original">รุ่น ORIGINAL</a></li>
+            <li><a class="navbar-text" routerLink="/kids">รุ่น KIDS</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font" routerLink="/aboutus">เกี่ยวกับเรา</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font" routerLink="/contact-us">ติดต่อเรา</a>
+        </li>
+      </ul>
+      <form class="d-flex ms-auto custom-search " role="search">
+        <input class="form-control me-2 custom-search " type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline btn-color font" type="submit">Search</button>
+      </form>
+      <ul class="nav navbar-nav">
+        <ng-container *ngIf="currentUser; else loginLink">
           <li class="nav-item">
-            <a class="nav-link font" routerLink="/home">home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link font" routerLink="/newproduct">สินค้าใหม่</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle font" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              สินค้าทั้งหมด
+            <a class="nav-link login-space font">
+              <i class="bi bi-house"></i> {{ currentUser.username }} <!-- แสดงชื่อผู้ใช้ -->
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="navbar-text" routerLink="/allproduct">ALLPRODUCT</a></li>
-              <li><a class="navbar-text" routerLink="/sprunchie">รุ่น SPRUNCHIE</a></li>
-              <li><a class="navbar-text" routerLink="/original">รุ่น ORIGINAL</a></li>
-              <li><a class="navbar-text" routerLink="/kids">รุ่น KIDS</a></li>
-            </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link font" routerLink="/aboutus">เกี่ยวกับเรา</a>
+            <button class="nav-link login-space font" (click)="onLogout()">
+              Logout
+            </button> <!-- ปุ่มออกจากระบบ -->
           </li>
+        </ng-container>
+        <ng-template #loginLink>
           <li class="nav-item">
-            <a class="nav-link font" routerLink="/contact-us">ติดต่อเรา</a>
+            <a class="nav-link login-space font" routerLink="/login">
+              <i class="bi bi-house"></i> Login</a>
           </li>
-        </ul>
-        <form class="d-flex ms-auto custom-search " role="search">
-          <input class="form-control me-2 custom-search " type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline btn-color font" type="submit">Search</button>
-        </form>
-        <ul class="nav navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link login-space font" routerLink="/login"><i class="bi bi-house"></i> login</a>
-          </li>
-          <h2 class="navbardeco" style="color: rgba(255, 252, 252, 0.741);">|</h2>
-        </ul>
-        <a routerLink="/cart">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag cart-deco" viewBox="0 0 16 16">
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-          </svg>
-        </a>
-      </div>
+        </ng-template>
+        <h2 class="navbardeco" style="color: rgba(255, 252, 252, 0.741);">|</h2>
+      </ul>
+      
+      <a routerLink="/cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag cart-deco" viewBox="0 0 16 16">
+          <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+        </svg>
+      </a>
     </div>
-  </nav>
-
-
-  <div class="container mt-4">
-    <router-outlet></router-outlet>
   </div>
+</nav>
 
-  <!-- ลิงก์ไฟล์ Bootstrap JS และ JQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- ลิงก์ไฟล์ Bootstrap JS และ JQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,73 +1,54 @@
 <app-navbar></app-navbar>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="register.component.css">
-  <title>JUBJIB SHOP</title>
-</head>
-
-<body>
-  <div class="container">
-    <div class="box form-box">
-      <header>
-        <div class="header-content">
-          <span>ลงทะเบียน</span>
-          <div class="logindetail">
-            เป็นสมาชิกแล้ว? <a routerLink="/login" class="logindetail2">เข้าสู่ระบบ</a>
-          </div>
+<div class="container">
+  <div class="box form-box">
+    <header>
+      <div class="header-content">
+        <span>ลงทะเบียน</span>
+        <div class="logindetail">
+          เป็นสมาชิกแล้ว? <a routerLink="/login" class="logindetail2">เข้าสู่ระบบ</a>
         </div>
-      </header>
-      <form action="home.component.html" method="post">
-        <div class="field input">
-          <input type="text" placeholder="Username" name="username" id="Username" required>
-        </div>
+      </div>
+    </header>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="field input">
+        <input type="text" placeholder="Username" formControlName="username" required>
+      </div>
 
-        <div class="field input">
-          <input type="Email" placeholder="Email" name="Email" id="Email" required>
-        </div>
+      <div class="field input">
+        <input type="email" placeholder="Email" formControlName="email" required>
+      </div>
 
-        <div class="field input">
-          <input type="phone" placeholder="Phone" name="Phone" id="Phone" required>
-        </div>
+      <div class="field input">
+        <input type="text" placeholder="Phone" formControlName="phone" required>
+      </div>
 
-        <div class="field input">
-          <input type="Address" placeholder="Address" name="Address" id="Address" required>
-        </div>
+      <div class="field input">
+        <input type="text" placeholder="Address" formControlName="address" required>
+      </div>
 
-        <div class="field input">
-          <input type="Province" placeholder="Province" name="Province" id="Province" required>
-        </div>
+      <div class="field input">
+        <input type="text" placeholder="Province" formControlName="province" required>
+      </div>
 
-        <div class="field input">
-          <input type="District" placeholder="District" name="District" id="District" required>
-        </div>
+      <div class="field input">
+        <input type="text" placeholder="District" formControlName="district" required>
+      </div>
 
-        <div class="field input">
-          <input type="Postal code" placeholder="Postal code" name="Postal code" id="Postal code" required>
-        </div>
+      <div class="field input">
+        <input type="text" placeholder="Postal code" formControlName="postalCode" required>
+      </div>
 
-        <div class="field input">
-          <input type="Password" placeholder="Password" name="Password" id="Password" required>
-        </div>
+      <div class="field input">
+        <input type="password" placeholder="Password" formControlName="password" required>
+      </div>
 
-        <div class="field input">
-          <input type="Confirm password" placeholder="Confirm password" name="Confirm password" id="Confirm password"
-            required>
-        </div>
+      <div class="field input">
+        <input type="password" placeholder="Confirm password" formControlName="confirmPassword" required>
+      </div>
 
-
-        <div class="field">
-          <input type="submit" class='btn' name="submit" value="register" required>
-        </div>
-      </form>
-    </div>
+      <div class="field">
+        <input type="submit" class='btn' value="register">
+      </div>
+    </form>
   </div>
-
-
-
-
-</body>
+</div>

@@ -14,14 +14,13 @@ import { OriginalComponent } from './original/original.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { RegisterComponent } from './register/register.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
-
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) // Lazy loading สำหรับโมดูล admin
   },
-
 
   {path:'',component:HomeComponent},
   {path:'aboutus',component:AboutusComponent},

@@ -6,6 +6,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     ManageOrderComponent,
