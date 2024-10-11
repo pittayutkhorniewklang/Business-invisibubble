@@ -60,4 +60,8 @@ export class ProductService {
     console.error(errorMessage); // แสดงข้อผิดพลาดในคอนโซล
     return throwError(() => new Error(errorMessage)); // ส่งข้อผิดพลาดกลับไป
   }
+    // ฟังก์ชันสำหรับดึงสินค้าขายดี
+    getTopSellingProducts(): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/top-selling`);
+    }
 }

@@ -1,3 +1,21 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
-<p>hello</p>
+<div class="container">
+    <div class="monthly-report">
+        <h4>รายงานยอดขายรายเดือน</h4>
+        <input type="month" [(ngModel)]="selectedMonth" (change)="fetchMonthlySales()" />
+        <div *ngIf="monthlySales">
+            <h5>ยอดขายสำหรับเดือน {{ selectedMonth | date: 'MMMM yyyy' }}</h5>
+            <p>ยอดรวม: ฿{{ totalMonthlySales }}</p>
+        </div>
+    </div>
+
+    <div class="top-selling-products">
+        <h4>สินค้าขายดี</h4>
+        <ul>
+            <li *ngFor="let product of topSellingProducts">
+                {{ product.name }} - ฿{{ product.price }} (ขาย: {{ product.quantitySold }} ชิ้น)
+            </li>
+        </ul>
+    </div>
+</div>

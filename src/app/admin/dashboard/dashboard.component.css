@@ -1,22 +1,29 @@
-.dashboard {
-  margin-left: 15rem; /* ปรับตำแหน่งให้ชิดกับ Sidebar */
-  padding: 30px; /* ปรับ padding ให้เหมาะสม */
-  width: calc(100% - 15rem); /* ปรับความกว้างของ Dashboard */
+html, body {
+  height: 100%; /* ให้ body สูงเต็มหน้าจอ */
+  margin: 0; /* ลบ margin */
 }
 
-/* Info container styles */
-.info-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ทำให้ responsive */
-  gap: 20px; /* ลดระยะห่างระหว่างกล่อง */
+.container {
+  display: flex; /* ใช้ flexbox */
+  flex-direction: column; /* จัดเรียงในแนวตั้ง */
+  align-items: center; /* จัดกลางในแนวนอน */
+  justify-content: center; /* จัดกลางในแนวตั้ง */
+  height: 100vh; /* ความสูงเต็มหน้าจอ */
+  overflow: hidden; /* ปิดการเลื่อน */
+  padding: 20px; /* เพิ่มระยะห่างภายใน */
 }
 
-/* Info box styles */
-.info-box {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 18px;
+.monthly-report, .top-selling-products {
+  width: 100%; /* ใช้ความกว้างเต็ม */
+  max-width: 600px; /* กำหนดความกว้างสูงสุด */
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+  margin: 20px 0; /* เพิ่มระยะห่างระหว่างส่วน */
+  padding: 20px; /* เพิ่มระยะห่างภายใน */
+  border: 1px solid #ccc; /* เพิ่มเส้นขอบ */
+  border-radius: 10px; /* ทำมุมมน */
+  background-color: #f9f9f9; /* เปลี่ยนพื้นหลัง */
+}
+
+h4 {
+  margin-bottom: 15px; /* ระยะห่างด้านล่างของหัวข้อ */
 }

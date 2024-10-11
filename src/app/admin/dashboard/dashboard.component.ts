@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
+import { ProductService } from '../../services/product.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,32 +9,28 @@ import { DashboardService } from '../../services/dashboard.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  totalSales: number = 0;
-  newOrders: number = 0;
-  activeUsers: number = 0;
-  revenue: number = 0;
-
-  constructor(private dashboardService: DashboardService) {}
+  selectedMonth: string = new Date().toISOString().substring(0, 7); // ค่าเริ่มต้นเป็นเดือนปัจจุบัน
+  monthlySales: any;
+  totalMonthlySales: number = 0;
+  topSellingProducts: any[] = [];
+  constructor(private orderService: OrderService, private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getTotalSales().subscribe(data => {
-      console.log('Total Sales Data:', data);  // Log ข้อมูล
-      this.totalSales = data.totalSales;
-    });
-  
-    this.dashboardService.getNewOrders().subscribe(data => {
-      console.log('New Orders Data:', data);  // Log ข้อมูล
-      this.newOrders = data.newOrders;
-    });
-  
-    this.dashboardService.getActiveUsers().subscribe(data => {
-      console.log('Active Users Data:', data);  // Log ข้อมูล
-      this.activeUsers = data.activeUsers;
-    });
-  
-    this.dashboardService.getRevenue().subscribe(data => {
-      console.log('Revenue Data:', data);  // Log ข้อมูล
-      this.revenue = data.totalRevenue;
+    this.fetchMonthlySales();
+    this.fetchTopSellingProducts();
+  }
+
+  fetchMonthlySales() {
+    this.orderService.getMonthlySales(this.selectedMonth).subscribe((data: any) => {
+      this.monthlySales = data;
+      this.totalMonthlySales = this.monthlySales.reduce((acc: number, sale: any) => acc + sale.amount, 0);
     });
   }
+
+  fetchTopSellingProducts() {
+    this.productService.getTopSellingProducts().subscribe((data: any) => {
+      this.topSellingProducts = data;
+    });
+  }
+  
 }

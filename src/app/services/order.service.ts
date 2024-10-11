@@ -29,4 +29,9 @@ export class OrderService {
   rejectOrder(orderId: number): Observable<any> {  // เปลี่ยนเป็น number
     return this.http.delete(`${this.apiUrl}/${orderId}`);
   }
+
+    // ฟังก์ชันสำหรับดึงยอดขายรายเดือน
+    getMonthlySales(month: string): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/sales/monthly/${month}`);
+    }
 }
