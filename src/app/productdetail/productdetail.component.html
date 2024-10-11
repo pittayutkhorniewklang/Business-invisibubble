@@ -1,25 +1,29 @@
 <app-navbar></app-navbar>
 <div class="product-detail-container" *ngIf="product">
-    <div class="product-image" *ngIf="product?.image">
-      <img [src]="product.image" alt="{{ product?.name }}" class="product-image img-fluid">
+  <div class="product-image-container">
+    <img [src]="product.imageUrl || product.image || defaultImageUrl" alt="{{ product.name }}" class="product-image">
+  </div>
+
+  <div class="product-info">
+    <p class="product-category">{{ product?.category }}</p>
+    <h1 class="product-title">{{ product?.name }}</h1>
+    <p class="brand-name">{{ product?.brand }}</p>
+    <p class="price">฿{{ product?.price | number:'1.0-0' }}</p>
+
+    <div class="quantity-control">
+      <label for="quantity">จำนวน:</label>
+      <button type="button" (click)="decreaseQuantity()" class="quantity-btn">-</button>
+      <input type="number" id="quantity" [(ngModel)]="quantity" min="1" class="quantity-input" readonly>
+      <button type="button" (click)="increaseQuantity()" class="quantity-btn">+</button>
     </div>
-  
-    <div class="product-info">
-      <h1>{{ product?.name }}</h1>
-      <p class="price">฿{{ product?.price | number:'1.0-0' }}</p>
-  
-      <div class="quantity-control">
-        <button (click)="decreaseQuantity()">-</button>
-        <input type="number" [(ngModel)]="quantity" min="1" value="1">
-        <button (click)="increaseQuantity()">+</button>
-      </div>
-  
-      <button class="btn-add-to-cart" (click)="addToCart()">เพิ่มในตะกร้า</button>
-  
-      <div class="product-description">
-        <h3>รายละเอียดสินค้า</h3>
-        <p>{{ product?.description }}</p>
-      </div>
+
+
+    <button class="btn-add-to-cart" (click)="addToCart()">เพิ่มในตะกร้า</button>
+    <button class="btn-wishlist"><i class="heart-icon"></i></button>
+
+    <div class="product-description">
+      <h3>รายละเอียดสินค้า</h3>
+      <p>{{ product?.description }}</p>
     </div>
   </div>
-  
+</div>

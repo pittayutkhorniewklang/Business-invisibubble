@@ -19,11 +19,10 @@ export class ManageProductComponent implements OnInit {
     this.loadProducts();  // โหลดสินค้าทั้งหมดเมื่อเริ่มต้น
   }
 
-  // ฟังก์ชันสำหรับโหลดสินค้าทั้งหมด
   loadProducts() {
     this.productService.getProducts().subscribe(
       (data) => {
-        console.log('Products fetched:', data);  // ตรวจสอบว่ามีข้อมูลถูกดึงมาหรือไม่
+        console.log('Products fetched:', data);
         this.products = data;
       },
       (error) => {
@@ -32,13 +31,11 @@ export class ManageProductComponent implements OnInit {
     );
   }
 
-  // ฟังก์ชันสำหรับอัปโหลดไฟล์
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     console.log('Selected file:', this.selectedFile);
   }
 
-  // ฟังก์ชันสำหรับบันทึกการเพิ่มหรือแก้ไขสินค้า
   onSubmit(event: Event) {
     event.preventDefault();
 
@@ -47,60 +44,56 @@ export class ManageProductComponent implements OnInit {
       return;
     }
 
-    // ใช้ JSON ธรรมดาแทนการใช้ FormData
-    const productData = {
-      name: this.product.name,
-      category: this.product.category,
-      brand: this.product.brand,
-      stock: this.product.stock,
-      price: this.product.price,
-      description: this.product.description,
-      image: this.selectedFile // เก็บไฟล์ที่ถูกเลือก
-    };
+    const formData = new FormData();
+    formData.append('name', this.product.name);
+    formData.append('category', this.product.category);
+    formData.append('brand', this.product.brand);
+    formData.append('stock', this.product.stock.toString());
+    formData.append('price', this.product.price.toString());
+    formData.append('description', this.product.description);
 
-    console.log('Product data being sent:', productData);  // ตรวจสอบข้อมูลที่ส่งออก
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
 
     if (this.isEditing) {
-      this.productService.editProduct(this.product._id, productData).subscribe(() => {
+      this.productService.editProduct(this.product._id, formData).subscribe(() => {
         console.log('Product edited successfully!');
-        this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากแก้ไขสำเร็จ
-        this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
+        this.loadProducts();
+        this.resetForm();
       }, (error) => {
         console.error('Error editing product:', error);
       });
     } else {
-      this.productService.addProduct(productData).subscribe(() => {
+      this.productService.addProduct(formData).subscribe(() => {
         console.log('Product added successfully!');
-        this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากเพิ่มสำเร็จ
-        this.resetForm();  // รีเซ็ตข้อมูลฟอร์ม
+        this.loadProducts();
+        this.resetForm();
       }, (error) => {
         console.error('Error adding product:', error);
       });
     }
   }
 
-  // ฟังก์ชันสำหรับลบสินค้า
   deleteProduct(id: string) {
     if (confirm('Are you sure you want to delete this product?')) {
       this.productService.deleteProduct(id).subscribe(() => {
-        this.loadProducts();  // โหลดสินค้าทั้งหมดใหม่หลังจากลบสำเร็จ
+        this.loadProducts();
       }, (error) => {
         console.error('Error deleting product:', error);
       });
     }
   }
 
-  // ฟังก์ชันสำหรับแก้ไขสินค้า
   editProduct(product: any) {
-    this.product = { ...product };  // คัดลอกข้อมูลสินค้าที่ต้องการแก้ไข
-    this.selectedFile = null;  // เคลียร์ไฟล์ที่เลือกเพื่อให้ผู้ใช้เลือกไฟล์ใหม่ถ้าต้องการ
-    this.isEditing = true;  // ตั้งสถานะว่าอยู่ในโหมดแก้ไข
+    this.product = { ...product };
+    this.selectedFile = null;
+    this.isEditing = true;
   }
 
-  // ฟังก์ชันสำหรับรีเซ็ตฟอร์ม
   resetForm() {
-    this.product = {};  // เคลียร์ข้อมูลฟอร์ม
-    this.selectedFile = null;  // รีเซ็ตไฟล์ที่เลือก
-    this.isEditing = false;  // ตั้งสถานะว่าไม่อยู่ในโหมดแก้ไข
+    this.product = {};
+    this.selectedFile = null;
+    this.isEditing = false;
   }
 }

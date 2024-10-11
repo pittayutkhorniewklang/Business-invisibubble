@@ -69,3 +69,11 @@
 .quick-link a:hover {
   text-decoration: underline;
 }
+footer {
+  background-color: #FFC0CB;
+  width: 100%;
+  padding: 20px 0;
+  border-radius: 20px; /* กำหนดมุมโค้งมน */
+  overflow: hidden; /* ป้องกันไม่ให้เนื้อหาล้นขอบ */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้ดูสวยงาม */
+}

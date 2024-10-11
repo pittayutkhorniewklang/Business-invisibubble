@@ -4,7 +4,7 @@
         <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
             <div class="card-product">
                 <div class="card-body text-center">
-                    <img [src]="product.image" alt="{{ product.name }}" class="product-image img-fluid">
+                    <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image">
                     <a [routerLink]="['/product', product._id]">
                         <h5 class="font-card">{{ product.name }}</h5>
                     </a>

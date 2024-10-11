@@ -64,8 +64,7 @@ export class CartComponent implements OnInit {
       customer_name: 'ชื่อผู้ใช้',  // คุณสามารถเปลี่ยนข้อมูลลูกค้าได้ตามที่ต้องการ
       order_items: this.items,  // ส่งรายการสินค้าที่มีอยู่ในตะกร้า
       delivery_price: 70,  // ค่าใช้จ่ายในการจัดส่ง (ตั้งค่าเอง)
-      delivery_status: 'pending',  // สถานะการจัดส่งเริ่มต้น
-      payment_status: 'unpaid'  // สถานะการชำระเงินเริ่มต้น
+
     };
 
     // ส่งข้อมูลคำสั่งซื้อไปยัง backend ผ่าน OrderService

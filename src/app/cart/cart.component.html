@@ -20,7 +20,6 @@
               <!-- วนลูปแสดงสินค้าที่อยู่ในตะกร้า -->
               <tr *ngFor="let item of items">
                 <td class="text-left">
-                  <img [src]="item.image" class="img-thumbnail" alt="{{ item.name }}" style="width: 80px; height: auto; margin-right: 10px;">
                   <span>{{ item.name }}</span>
                 </td>
                 <td>฿{{ item.price | number: '1.0-0' }}</td>
