@@ -14,6 +14,7 @@ import { OriginalComponent } from './original/original.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { RegisterComponent } from './register/register.component';
 import { SprunchieComponent } from './sprunchie/sprunchie.component';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
 
   {path:'',component:HomeComponent},
   {path:'aboutus',component:AboutusComponent},
-  {path:'admin/dashboard',component:DashboardComponent},
+  {path:'admin/dashboard',component:DashboardComponent, canActivate: [AdminGuard]},
   {path:'home',component:HomeComponent},
   {path:'allproduct',component:AllproductComponent},
   {path:'cart',component:CartComponent},

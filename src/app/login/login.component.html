@@ -9,23 +9,20 @@
                 </div>
             </div>
         </header>
-        <form action="home.component.html" method="post">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <div class="field input">
                 <label for="username">Username</label>
-                <input type="text" placeholder="Username" name="username" id="Username" required>
+                <input type="text" formControlName="username" placeholder="Username" required>
             </div>
 
             <div class="field input">
                 <label for="password">Password</label>
-                <input type="password" placeholder="password" name="password" id="password" required>
+                <input type="password" formControlName="password" placeholder="Password" required>
             </div>
 
             <div class="field">
-                <input type="submit" class='btn' name="submit" value="Login" required>
+                <input type="submit" class='btn' value="Login">
             </div>
         </form>
     </div>
 </div>
-
-
-
