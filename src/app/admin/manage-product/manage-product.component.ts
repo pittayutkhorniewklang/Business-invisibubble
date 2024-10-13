@@ -38,19 +38,33 @@ export class ManageProductComponent implements OnInit {
 
   onSubmit(event: Event) {
     event.preventDefault();
-
+  
     if (!this.product.name || !this.product.category || !this.product.price) {
       console.error('Please fill out all required fields.');
       return;
     }
-
+  
+    // สร้าง FormData สำหรับส่งข้อมูล
+    const formData = new FormData();
+    formData.append('name', this.product.name);
+    formData.append('category', this.product.category);
+    formData.append('brand', this.product.brand);
+    formData.append('stock', this.product.stock.toString());
+    formData.append('price', this.product.price.toString());
+    formData.append('description', this.product.description);
+  
+    // ตรวจสอบว่ามีการเลือกไฟล์หรือไม่ ถ้ามีจะเพิ่มไฟล์ลงใน FormData
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+  
     // ตรวจสอบว่าเป็นการแก้ไขหรือไม่
     if (this.isEditing) {
       if (!this.product._id) {
         console.error('Product ID is missing.');
         return;
       }
-      this.productService.editProduct(this.product._id, this.product).subscribe(() => {
+      this.productService.editProduct(this.product._id, formData).subscribe(() => {
         console.log('Product edited successfully!');
         this.loadProducts();
         this.resetForm();
@@ -58,7 +72,7 @@ export class ManageProductComponent implements OnInit {
         console.error('Error editing product:', error);
       });
     } else {
-      this.productService.addProduct(this.product).subscribe(() => {
+      this.productService.addProduct(formData).subscribe(() => {
         console.log('Product added successfully!');
         this.loadProducts();
         this.resetForm();
@@ -67,6 +81,7 @@ export class ManageProductComponent implements OnInit {
       });
     }
   }
+  
 
   deleteProduct(id: string) {
     if (confirm('Are you sure you want to delete this product?')) {

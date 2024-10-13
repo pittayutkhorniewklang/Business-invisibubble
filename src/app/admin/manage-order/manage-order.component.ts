@@ -27,31 +27,18 @@ export class ManageOrderComponent implements OnInit {
     });
   }
 
-  // ฟังก์ชันสำหรับอัปเดตสถานะคำสั่งซื้อ
-  updateOrder(orderId: number, deliveryStatus: string, paymentStatus: string) {
-    this.orderService.updateOrderStatus(orderId, deliveryStatus, paymentStatus).subscribe({
+  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ
+  rejectOrder(orderId: number) {
+    if (confirm('คุณต้องการรีเจ็คคำสั่งซื้อใช่หรือไม่?')) {
+      this.orderService.rejectOrder(orderId).subscribe({
         next: () => {
-            alert('อัปเดตคำสั่งซื้อสำเร็จ!');
-            this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากอัปเดตสำเร็จ
+          alert('รีเจ็คคำสั่งซื้อสำเร็จ');
+          this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากรีเจ็คสำเร็จ
         },
         error: (err) => {
-            console.error('Error updating order:', err);
+          console.error('Error rejecting order:', err);
         }
-    });
-}
-
-// ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ
-rejectOrder(orderId: number) {
-    if (confirm('คุณต้องการรีเจ็คคำสั่งซื้อใช่หรือไม่?')) {
-        this.orderService.rejectOrder(orderId).subscribe({
-            next: () => {
-                alert('รีเจ็คคำสั่งซื้อสำเร็จ');
-                this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากรีเจ็คสำเร็จ
-            },
-            error: (err) => {
-                console.error('Error rejecting order:', err);
-            }
-        });
+      });
     }
-}
+  }
 }
