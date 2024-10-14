@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';  // นำเข้า OrderService
 import { Router } from '@angular/router';  // นำเข้า Router
+import { AuthService } from '../services/auth.service';  // นำเข้า AuthService
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +16,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private orderService: OrderService,  // Inject OrderService
+    private authService: AuthService,  // Inject AuthService
     private router: Router  // Inject Router
   ) {}
 
@@ -61,22 +63,26 @@ export class CartComponent implements OnInit {
   // ฟังก์ชันสำหรับดำเนินการสั่งซื้อ
   placeOrder() {
     const order = {
-      customer_name: 'ชื่อผู้ใช้',  // คุณสามารถเปลี่ยนข้อมูลลูกค้าได้ตามที่ต้องการ
-      order_items: this.items,  // ส่งรายการสินค้าที่มีอยู่ในตะกร้า
-      delivery_price: 70,  // ค่าใช้จ่ายในการจัดส่ง (ตั้งค่าเอง)
-
+      customer_name: this.authService.getUserName(),
+      order_items: this.items.map(item => ({
+        productId: item._id,
+        name: item.name, // เพิ่มการดึงชื่อสินค้าจากข้อมูลใน array
+        price: item.price,
+        quantity: item.quantity
+      })),
+      delivery_price: 70
     };
-
-    // ส่งข้อมูลคำสั่งซื้อไปยัง backend ผ่าน OrderService
+  
+    // ส่งข้อมูลไปยัง backend
     this.orderService.createOrder(order).subscribe({
-      next: () => {
-        alert('คำสั่งซื้อสำเร็จ!');
+      next: (res) => {
+        console.log('คำสั่งซื้อสำเร็จ:', res);
         this.clearCart();  // ล้างตะกร้าหลังสั่งซื้อเสร็จ
-        this.router.navigate(['/admin/dashboard/manage-order']);  // เปลี่ยนเส้นทางไปยังหน้า Manage Orders ของ Admin
       },
       error: (err) => {
         console.error('เกิดข้อผิดพลาดในการสั่งซื้อ:', err);
       }
     });
   }
+  
 }

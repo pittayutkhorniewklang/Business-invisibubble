@@ -16,14 +16,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders" class="align-middle">
-          <td>{{ order.id }}</td>
+          <td>{{ order._id }}</td> <!-- เปลี่ยนเป็น _id เพราะ MongoDB ใช้ _id -->
           <td>{{ order.customer_name }}</td>
   
           <!-- แสดงรายการสินค้าและจำนวน -->
           <td>
             <ul>
               <li *ngFor="let item of order.order_items">
-                {{ item.productId?.name }} - {{ item.quantity }} pcs <!-- ใช้ productId.name เพื่อแสดงชื่อสินค้า -->
+                {{ item.productId?.name || 'No Product' }} - {{ item.quantity }} pcs
               </li>
             </ul>
           </td>
@@ -31,17 +31,16 @@
           <td>
             <ul>
               <li *ngFor="let item of order.order_items">
-                {{ item.productId?.price * item.quantity | currency:'THB':'symbol':'1.0-0' }} <!-- ใช้ productId.price เพื่อแสดงราคาสินค้า -->
+                {{ (item.productId?.price || 0) * item.quantity | currency:'THB':'symbol':'1.0-0' }} <!-- ตรวจสอบ productId และให้ default เป็น 0 ถ้าไม่มีราคา -->
               </li>
             </ul>
           </td>
           
-  
           <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
   
           <td>
             <div class="d-flex justify-content-around">
-              <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
+              <button class="btn btn-danger btn-sm" (click)="rejectOrder(order._id)">
                 <i class="fas fa-times"></i> Reject
               </button>
             </div>
@@ -49,4 +48,4 @@
         </tr>
       </tbody>
     </table>
-  </div>
+</div>

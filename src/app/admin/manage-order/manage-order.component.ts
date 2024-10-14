@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';  // นำเข้า OrderService
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-order',
@@ -9,35 +10,28 @@ import { OrderService } from '../../services/order.service';  // นำเข้
 export class ManageOrderComponent implements OnInit {
   orders: any[] = [];
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.loadOrders();  // ดึงข้อมูลคำสั่งซื้อเมื่อ Component โหลด
+    this.loadOrders();
   }
 
-  // ฟังก์ชันดึงคำสั่งซื้อทั้งหมด
-  loadOrders() {
+  loadOrders(): void {
     this.orderService.getOrders().subscribe({
-      next: (data: any[]) => {
+      next: (data) => {
         this.orders = data;
+        console.log(this.orders); // ตรวจสอบข้อมูลที่ดึงมา
       },
-      error: (err) => {
+      error: (err: any) => {  // แก้ไขเพื่อให้ err เป็นชนิด any
         console.error('Error fetching orders:', err);
       }
     });
   }
 
-  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ
-  rejectOrder(orderId: number) {
-    if (confirm('คุณต้องการรีเจ็คคำสั่งซื้อใช่หรือไม่?')) {
-      this.orderService.rejectOrder(orderId).subscribe({
-        next: () => {
-          alert('รีเจ็คคำสั่งซื้อสำเร็จ');
-          this.loadOrders();  // รีโหลดคำสั่งซื้อใหม่หลังจากรีเจ็คสำเร็จ
-        },
-        error: (err) => {
-          console.error('Error rejecting order:', err);
-        }
+  rejectOrder(orderId: string): void {  // เปลี่ยนจาก deleteOrder เป็น rejectOrder
+    if (confirm('Are you sure you want to reject this order?')) {
+      this.orderService.rejectOrder(orderId).subscribe(() => {
+        this.orders = this.orders.filter(order => order.id !== orderId);
       });
     }
   }

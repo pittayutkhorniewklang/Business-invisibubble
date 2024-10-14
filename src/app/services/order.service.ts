@@ -20,18 +20,18 @@ export class OrderService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // ฟังก์ชันสำหรับอัปเดตคำสั่งซื้อ (ใช้ number)
-  updateOrderStatus(orderId: number, deliveryStatus: string, paymentStatus: string): Observable<any> {  // เปลี่ยนเป็น number
+  // ฟังก์ชันสำหรับอัปเดตคำสั่งซื้อ (ใช้ string แทน number)
+  updateOrderStatus(orderId: string, deliveryStatus: string, paymentStatus: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${orderId}`, { deliveryStatus, paymentStatus });
   }
 
-  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ (ใช้ number)
-  rejectOrder(orderId: number): Observable<any> {  // เปลี่ยนเป็น number
+  // ฟังก์ชันสำหรับรีเจ็คคำสั่งซื้อ (ใช้ string แทน number)
+  rejectOrder(orderId: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${orderId}`);
   }
 
-    // ฟังก์ชันสำหรับดึงยอดขายรายเดือน
-    getMonthlySales(month: string): Observable<any> {
-      return this.http.get<any>(`${this.apiUrl}/sales/monthly/${month}`);
-    }
+  // ฟังก์ชันสำหรับดึงยอดขายรายเดือน
+  getMonthlySales(month: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/sales/monthly/${month}`);
+  }
 }

@@ -25,6 +25,13 @@ export class AuthService {
     }
   }
 
+  getUserName(): string {
+    const currentUser = this.currentUserSubject.value;
+    console.log("Current User: ", currentUser);  // ตรวจสอบค่า currentUser
+    return currentUser ? currentUser.username : 'Guest';  // เปลี่ยนจาก currentUser.name เป็น currentUser.username
+  }
+  
+
   logout() {
     if (typeof window !== 'undefined' && localStorage) {
       this.currentUserSubject.next(null);
