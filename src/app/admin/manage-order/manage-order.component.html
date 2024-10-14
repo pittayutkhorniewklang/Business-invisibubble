@@ -1,51 +1,57 @@
 <app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
 <div class="container mt-4">
-    <h3 class="text-center mb-4">Manage Orders</h3>
-    
-    <table class="table table-bordered table-hover text-center">
-      <thead class="thead-dark">
-        <tr>
-          <th>Order ID</th>
-          <th>Customer</th>
-          <th>Order Items</th>
-          <th>Total Item Price</th> <!-- คอลัมน์สำหรับแสดงราคาสินค้า -->
-          <th>Delivery Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders" class="align-middle">
-          <td>{{ order._id }}</td> <!-- เปลี่ยนเป็น _id เพราะ MongoDB ใช้ _id -->
-          <td>{{ order.customer_name }}</td>
-  
-          <!-- แสดงรายการสินค้าและจำนวน -->
-          <td>
-            <ul>
-              <li *ngFor="let item of order.order_items">
-                {{ item.productId?.name || 'No Product' }} - {{ item.quantity }} pcs
-              </li>
-            </ul>
-          </td>
-                    
-          <td>
-            <ul>
-              <li *ngFor="let item of order.order_items">
-                {{ (item.productId?.price || 0) * item.quantity | currency:'THB':'symbol':'1.0-0' }} <!-- ตรวจสอบ productId และให้ default เป็น 0 ถ้าไม่มีราคา -->
-              </li>
-            </ul>
-          </td>
-          
-          <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
-  
-          <td>
-            <div class="d-flex justify-content-around">
-              <button class="btn btn-danger btn-sm" (click)="rejectOrder(order._id)">
-                <i class="fas fa-times"></i> Reject
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h3 class="text-center mb-4">Manage Orders</h3>
+
+  <table class="table table-bordered table-hover text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Order Items</th>
+        <th>Total Item Price</th> <!-- ราคารวมสินค้า -->
+        <th>Delivery Price</th>
+        <th>Total Price</th> <!-- ราคารวมทั้งหมด -->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders" class="align-middle">
+        <td>{{ order._id }}</td>
+        <td>{{ order.customer_name }}</td>
+
+        <!-- แสดงรายการสินค้าและจำนวน -->
+        <td>
+          <ul>
+            <li *ngFor="let item of order.order_items">
+              {{ item.productId?.name || 'No Product' }} - {{ item.quantity }} pcs
+            </li>
+          </ul>
+        </td>
+
+        <td>
+          <ul>
+            <li *ngFor="let item of order.order_items">
+              {{ item.productId?.price * item.quantity | currency:'THB':'symbol':'1.0-0' }}
+            </li>
+          </ul>
+        </td>
+
+        <td>{{ order.delivery_price | currency:'THB':'symbol':'1.0-0' }}</td>
+
+        <!-- คำนวณราคารวมทั้งหมด (ราคารวมสินค้า + ค่าจัดส่ง) -->
+        <td>
+          {{ calculateTotalPrice(order) | currency:'THB':'symbol':'1.0-0' }}
+        </td>
+
+        <td>
+          <div class="d-flex justify-content-around">
+            <button class="btn btn-danger btn-sm" (click)="rejectOrder(order.id)">
+              <i class="fas fa-times"></i> Reject
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

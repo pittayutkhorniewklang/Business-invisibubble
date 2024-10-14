@@ -35,4 +35,9 @@ export class ManageOrderComponent implements OnInit {
       });
     }
   }
+  calculateTotalPrice(order: any): number {
+    const totalItemPrice = order.order_items.reduce((acc: number, item: any) => acc + (item.productId?.price * item.quantity), 0);
+    return totalItemPrice + order.delivery_price;
+  }
+  
 }
