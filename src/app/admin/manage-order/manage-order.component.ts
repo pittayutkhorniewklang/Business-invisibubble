@@ -28,10 +28,10 @@ export class ManageOrderComponent implements OnInit {
     });
   }
 
-  rejectOrder(orderId: string): void {  // เปลี่ยนจาก deleteOrder เป็น rejectOrder
+  rejectOrder(orderId: string): void {
     if (confirm('Are you sure you want to reject this order?')) {
       this.orderService.rejectOrder(orderId).subscribe(() => {
-        this.orders = this.orders.filter(order => order.id !== orderId);
+        this.orders = this.orders.filter(order => order._id !== orderId);  // ใช้ order._id แทน order.id
       });
     }
   }
