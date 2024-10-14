@@ -51,7 +51,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     ReactiveFormsModule,
     HttpClientModule,
     AdminRoutingModule,
-    
+    AdminModule
   ],
   providers: [
     provideClientHydration()

@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000/dashboard'; // URL ของ API
+  private apiUrl = 'http://localhost:3000/dashboard';
 
   constructor(private http: HttpClient) {}
 
-  getTotalSales(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/total-sales`);
+  getMonthlySales(month: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/sales/monthly/${month}`);
   }
 
-  getNewOrders(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/new-orders`);
+  getSalesRange(startDate: string, endDate: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/sales/range?startDate=${startDate}&endDate=${endDate}`);
   }
 
-  getActiveUsers(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/active-users`);
+  getTopSellingProducts(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products/top-selling`);
   }
 
-  getRevenue(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/revenue`);
+  getSalesChart(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/sales/chart`);
   }
 }
