@@ -47,3 +47,14 @@
   background-color: #28a745;
   border-color: #28a745;
 }
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.payment-icons img {
+  width: 50px; /* ลดขนาดรูปภาพ */
+  height: auto;
+}
