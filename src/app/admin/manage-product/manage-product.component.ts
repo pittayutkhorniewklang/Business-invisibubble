@@ -10,7 +10,7 @@ export class ManageProductComponent implements OnInit {
 
   products: any[] = [];  // เก็บสินค้าทั้งหมด
   product: any = {};  // เก็บข้อมูลสินค้าใหม่หรือสินค้าแก้ไข
-  selectedFile: File | null = null;  // เก็บไฟล์ที่ถูกเลือก
+  selectedFile: File | null = null;  // เก็บไฟล์ที่เลือก
   isEditing: boolean = false;  // ตรวจสอบว่าอยู่ในโหมดแก้ไขหรือไม่
 
   constructor(private productService: ProductService) {}
@@ -40,11 +40,11 @@ export class ManageProductComponent implements OnInit {
     event.preventDefault();
   
     if (!this.product.name || !this.product.category || !this.product.price) {
-      console.error('Please fill out all required fields.');
+      console.error('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;
     }
   
-    // สร้าง FormData สำหรับส่งข้อมูล
+    // สร้าง FormData สำหรับส่งข้อมูลสินค้า
     const formData = new FormData();
     formData.append('name', this.product.name);
     formData.append('category', this.product.category);
@@ -52,43 +52,42 @@ export class ManageProductComponent implements OnInit {
     formData.append('stock', this.product.stock.toString());
     formData.append('price', this.product.price.toString());
     formData.append('description', this.product.description);
-  
-    // ตรวจสอบว่ามีการเลือกไฟล์หรือไม่ ถ้ามีจะเพิ่มไฟล์ลงใน FormData
+
+    // ตรวจสอบว่ามีไฟล์ที่เลือกหรือไม่ และเพิ่มไฟล์ลงใน FormData
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
   
-    // ตรวจสอบว่าเป็นการแก้ไขหรือไม่
+    // ตรวจสอบว่าเป็นการแก้ไขสินค้าหรือไม่
     if (this.isEditing) {
       if (!this.product._id) {
-        console.error('Product ID is missing.');
+        console.error('Product ID หายไป');
         return;
       }
       this.productService.editProduct(this.product._id, formData).subscribe(() => {
-        console.log('Product edited successfully!');
+        console.log('แก้ไขสินค้าสำเร็จ!');
         this.loadProducts();
         this.resetForm();
       }, (error) => {
-        console.error('Error editing product:', error);
+        console.error('เกิดข้อผิดพลาดในการแก้ไขสินค้า:', error);
       });
     } else {
       this.productService.addProduct(formData).subscribe(() => {
-        console.log('Product added successfully!');
+        console.log('เพิ่มสินค้าสำเร็จ!');
         this.loadProducts();
         this.resetForm();
       }, (error) => {
-        console.error('Error adding product:', error);
+        console.error('เกิดข้อผิดพลาดในการเพิ่มสินค้า:', error);
       });
     }
   }
-  
 
   deleteProduct(id: string) {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('คุณแน่ใจว่าต้องการลบสินค้านี้หรือไม่?')) {
       this.productService.deleteProduct(id).subscribe(() => {
         this.loadProducts();
       }, (error) => {
-        console.error('Error deleting product:', error);
+        console.error('เกิดข้อผิดพลาดในการลบสินค้า:', error);
       });
     }
   }
