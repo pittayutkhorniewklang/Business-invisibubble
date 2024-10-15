@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
-
 /* ฟอนต์ */
 .font {
   font-family: 'Poppins', 'Kanit', sans-serif;
@@ -19,8 +17,8 @@
 /* ค้นหา */
 .custom-search {
   margin-left: 20px;
-  width: 100%; /* ให้ responsive โดยปรับเป็น 100% */
-  max-width: 500px; /* ตั้งค่า max-width */
+  width: 100%;
+  max-width: 500px;
 }
 
 /* ปุ่ม Outline */
@@ -64,8 +62,8 @@
   background-color: rgb(209, 230, 223);
   border-color: rgb(209, 230, 223);
   padding: 5px 10px;
-  border-radius: 5px; /* เพิ่มมุมโค้งมน */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* สไตล์ Nav Item */
@@ -82,24 +80,77 @@
     font-weight: bold !important;
     font-family: 'Poppins', 'Kanit', sans-serif;
     font-size: 14px;
-    padding: 12px 15px; /* เพิ่ม padding ด้านบนและล่างเพื่อเพิ่มระยะห่าง */
-    text-decoration: none !important;
+    padding: 12px 15px;
 }
 
 .dropdown-item:hover {
-  background-color: #A04747; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-  color: white !important; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
-  text-decoration: none;
+  background-color: #A04747;
+  color: white !important;
 }
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999; /* ทำให้ navbar อยู่ด้านบนสุดของทุกองค์ประกอบ */
+  z-index: 9999;
 }
 
-/* ปรับแต่งเพื่อให้มีช่องว่างด้านบนของเนื้อหา เมื่อ navbar คงที่ */
+/* ปรับแต่งเพื่อให้มีช่องว่างด้านบนของเนื้อหา */
 body {
-  padding-top: 60px; /* ปรับขนาดช่องว่างด้านบนตามความสูงของ navbar */
+  padding-top: 80px; /* เพิ่มขนาดช่องว่างด้านบนตามความสูงของ navbar */
+}
+
+.card-product {
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.card-product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.font-card {
+  font-family: 'Poppins', 'Kanit', sans-serif;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.price {
+  font-size: 14px;
+  color: #e963ad;
+}
+
+.btn {
+  height: 40px;
+  background: #9e5959(212, 98, 123, 0.808);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.btn:hover {
+  background: rgba(243, 22, 206, 1);
+}
+
+.container {
+  margin-top: 120px; /* เพิ่มระยะห่างจาก navbar ให้มากขึ้น */
 }

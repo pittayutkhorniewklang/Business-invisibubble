@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
   <div class="container-fluid">
     <a class="navbar-brand font" routerLink="/home"> JUBJIB SHOP</a>
@@ -32,10 +30,11 @@
           <a class="nav-link font" routerLink="/contact-us">ติดต่อเรา</a>
         </li>
       </ul>
-      <form class="d-flex ms-auto custom-search " role="search">
-        <input class="form-control me-2 custom-search " type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline btn-color font" type="submit">Search</button>
+      <form class="d-flex align-items-center ms-auto custom-search" (ngSubmit)="onSearch()">
+        <input [(ngModel)]="searchQuery" name="searchQuery" class="form-control custom-search-input me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-color custom-search-btn" type="submit">Search</button>
       </form>
+
       <ul class="nav navbar-nav">
         <ng-container *ngIf="currentUser; else loginLink">
           <li class="nav-item">
@@ -57,21 +56,41 @@
         </ng-template>
         <h2 class="navbardeco" style="color: rgba(255, 252, 252, 0.741);">|</h2>
       </ul>
-      
+
       <a routerLink="/cart">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag cart-deco" viewBox="0 0 16 16">
-          <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag cart-deco"
+          viewBox="0 0 16 16">
+          <path
+            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
         </svg>
       </a>
     </div>
   </div>
 </nav>
 
+<div class="container" *ngIf="searchResults.length > 0">
+  <h4>ผลลัพธ์การค้นหา:</h4>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of searchResults">
+      <div class="card-product">
+        <div class="card-body text-center">
+            <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image">
+            <a [routerLink]="['/product', product._id]">
+                <h5 class="font-card">{{ product.name }}</h5>
+            </a>
+            <p class="font-card price">{{ product.price | currency:'THB':'symbol':'1.0-0' }}</p>
+            <button class="btn btn-primary" (click)="addToCart(product)">เพิ่มในตะกร้า</button>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>
-
 <!-- ลิงก์ไฟล์ Bootstrap JS และ JQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
