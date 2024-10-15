@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service'; // DashboardService
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -62,4 +63,5 @@ export class DashboardComponent implements OnInit {
       console.warn('กรุณาเลือกวันที่ให้ครบถ้วน');
     }
   }
+  
 }
