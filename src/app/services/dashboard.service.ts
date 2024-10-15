@@ -6,23 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000/dashboard';
+  private apiUrl = 'http://localhost:3000/dashboard';  // URL สำหรับ API
 
   constructor(private http: HttpClient) {}
 
+  // ดึงยอดขายรายเดือน
   getMonthlySales(month: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/sales/monthly/${month}`);
+    return this.http.get<any>(`${this.apiUrl}/monthly/${month}`);
   }
 
-  getSalesRange(startDate: string, endDate: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/sales/range?startDate=${startDate}&endDate=${endDate}`);
-  }
-
+  // ดึงสินค้าขายดี
   getTopSellingProducts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/products/top-selling`);
+    return this.http.get<any>(`${this.apiUrl}/top-selling`);
   }
 
-  getSalesChart(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/sales/chart`);
+  // ดึงยอดขายตามช่วงเวลา
+  getSalesByRange(startDate: string, endDate: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/range?startDate=${startDate}&endDate=${endDate}`);
   }
 }

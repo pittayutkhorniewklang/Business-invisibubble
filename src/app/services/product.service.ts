@@ -47,13 +47,6 @@ export class ProductService {
     );
   }
 
-  // ฟังก์ชันสำหรับดึงสินค้าขายดี
-  getTopSellingProducts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/top-selling`).pipe(
-      catchError(this.handleError) // จัดการข้อผิดพลาด
-    );
-  }
-
   // ฟังก์ชันสำหรับการค้นหาสินค้าตามชื่อ
   searchProductsByName(name: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/search?name=${name}`).pipe(

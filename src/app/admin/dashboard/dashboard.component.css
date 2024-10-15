@@ -1,0 +1,70 @@
+body {
+    padding-top: 80px; /* ปรับตามความสูงของ navbar */
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 20px; /* เพิ่มช่องว่างด้านบนของ container เพื่อเพิ่มความชัดเจน */
+  }
+  
+  .card {
+    border-radius: 15px;
+    background-color: #f8f9fa;
+  }
+  
+  .top-selling-products img {
+    object-fit: cover;
+  }
+  
+  .range-report .form-control {
+    margin-bottom: 15px;
+  }
+  
+  button.btn-primary {
+    width: 150px;
+    padding: 10px;
+  }
+  
+  .chart-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .list-group-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .list-group-item img {
+    margin-right: 15px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .fs-4 {
+    font-size: 1.5rem;
+  }
+  
+  .fs-5 {
+    font-size: 1.25rem;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .w-50 {
+    width: 50%;
+  }
+  
+  .w-45 {
+    width: 45%;
+  }
+  

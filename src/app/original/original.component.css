@@ -7,6 +7,7 @@
     flex-wrap: wrap; /* รองรับการจัดเรียงหลายแถว */
     padding: 20px;
     font-family: 'Poppins', 'Kanit', sans-serif;
+    margin-top: 80px;
 }
 
 .card-product {

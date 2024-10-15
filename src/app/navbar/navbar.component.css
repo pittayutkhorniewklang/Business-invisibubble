@@ -91,4 +91,15 @@
   color: white !important; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
   text-decoration: none;
 }
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; /* ทำให้ navbar อยู่ด้านบนสุดของทุกองค์ประกอบ */
+}
 
+/* ปรับแต่งเพื่อให้มีช่องว่างด้านบนของเนื้อหา เมื่อ navbar คงที่ */
+body {
+  padding-top: 60px; /* ปรับขนาดช่องว่างด้านบนตามความสูงของ navbar */
+}

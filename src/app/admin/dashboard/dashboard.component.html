@@ -1,2 +1,45 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
+<div class="container mt-5">
+  <div class="monthly-report card shadow p-4 mb-4">
+    <h4 class="text-center mb-4">รายงานยอดขายรายเดือน</h4>
+    <div class="d-flex justify-content-center mb-3">
+      <input type="month" class="form-control w-50" [(ngModel)]="selectedMonth" (change)="fetchMonthlySales()" />
+    </div>
+    <div *ngIf="totalMonthlySales !== undefined" class="text-center">
+      <h5>ยอดขายสำหรับเดือน {{ selectedMonth | date: 'MMMM yyyy' }}</h5>
+      <p class="fs-4 text-success">ยอดรวม: ฿{{ totalMonthlySales | number }}</p>
+    </div>
+  </div>
+
+  <div class="top-selling-products card shadow p-4 mb-4">
+    <h4 class="text-center mb-4">สินค้าขายดี</h4>
+    <ul class="list-group">
+      <li class="list-group-item d-flex align-items-center" *ngFor="let product of topSellingProducts">
+        <img [src]="product.imageUrl" alt="{{ product.name }}" class="rounded-circle" width="70" height="70" style="margin-right: 20px;">
+        <div>
+          <strong>{{ product.name }}</strong> - ฿{{ product.price }} <br>
+          <small class="text-muted">(ขาย: {{ product.quantitySold }} ชิ้น)</small>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="range-report card shadow p-4 mb-4">
+    <h4 class="text-center mb-4">รายงานยอดขายตามช่วงเวลา</h4>
+    <div class="d-flex justify-content-around mb-3">
+      <input type="date" class="form-control w-45" [(ngModel)]="startDate" />
+      <input type="date" class="form-control w-45" [(ngModel)]="endDate" />
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="fetchSalesRange()">ดึงข้อมูล</button>
+    </div>
+    <div *ngIf="totalSalesRange !== undefined" class="text-center mt-4">
+      <p class="fs-5">ยอดขายตั้งแต่ {{ startDate | date }} ถึง {{ endDate | date }}: ฿{{ totalSalesRange | number }}</p>
+    </div>
+  </div>
+
+  <div class="chart-container card shadow p-4">
+    <canvas id="salesChart"></canvas>
+  </div>
+</div>

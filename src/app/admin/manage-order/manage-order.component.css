@@ -1,14 +1,54 @@
-/* CSS สำหรับจัดการสไตล์ของหน้าจัดการออเดอร์ */
+.container {
+  background-color: #f8f9fa; /* สีพื้นหลังที่นุ่มนวล */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h3 {
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
 .table {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .btn-success {
-    margin-right: 10px;
-  }
-  
-  .btn-danger {
-    margin-left: 10px;
-  }
-  
+  background-color: #ffffff; /* สีพื้นหลังตาราง */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงาเบาๆ */
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  padding: 15px;
+}
+
+.thead-dark th {
+  background-color: #343a40; /* สีพื้นหลังหัวตาราง */
+  color: white; /* สีตัวอักษร */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f3f5; /* สีเมื่อ mouse hover */
+}
+
+.d-flex {
+  justify-content: center; /* จัดกลางสำหรับปุ่ม */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* สีแดง */
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* สีเมื่อ hover */
+}
+
+ul {
+  list-style-type: none; /* ปิดสัญลักษณ์ bullet ของ list */
+  padding-left: 0;
+}
+
+ul li {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
